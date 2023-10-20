@@ -1,0 +1,50 @@
+#! bin/bash
+
+echo "This is a revisement script for assigning variables"
+
+file_name=config.yaml
+
+if [ -d "config" ]
+then
+    echo "reading contents of directory"
+    config_files=$(ls config)
+else
+    echo "nothing found, lets create new directory for config files"
+    mkdir config
+fi
+
+if [ -x "config.yaml" ]
+then
+    echo "config.yaml is executable"
+else
+    echo "config.yaml is not executable"
+fi
+
+q_files=$(find . -type f | wc -l)
+
+if [ "$q_files" -gt 2 ]
+then
+    echo "oh God, folder is overloaded, try to optimise the files amount"
+elif [ "$q_files" -eq 2 ]
+then
+    echo "you have 2 files"
+else
+    echo "you have a short amount of files here, folder is not overloaded"
+fi
+
+user_group=$1
+
+if [ "$user_group" == "andrii" ]
+then
+    echo "hi andrii"
+elif [ "$user_group" == "admin" ]
+then
+    echo "hi admin"
+else
+    echo "you do not belong here"
+fi
+
+echo "using file $file_name to configure active project"
+
+echo "those are configuration files: $config_files"
+
