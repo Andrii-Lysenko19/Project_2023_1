@@ -1,0 +1,34 @@
+#!/bin/bash
+
+echo " I will read and show all your inputs."
+sleep 1
+echo "Initialising"
+for i in {1..3}; do
+        echo -n "."
+        sleep 1
+done
+printf "\n"
+
+echo "Ready for action!"
+read -a parameters -p "Write them here: "
+count1=${#parameters[@]}
+echo "You entered $count1 parameters. Thats what you wanted to see? ${parameters[@]}"
+sleep 1
+
+echo "Lets try in other way"
+read -p "Write them here: " parameters2
+count2=$(echo $parameters2 | wc -w)
+echo "Now you entered $count2 parameters. Well done!"
+echo "Lets check when you entered the most parameters"
+
+sleep 1
+
+if [ $count1 -gt $count2 ]
+then
+    echo "First time you entered more!"
+elif [ $count2 -gt $count1 ]
+then
+    echo "Second time you entered more!"
+else
+    echo "You entered equal number of parameters both times"
+fi

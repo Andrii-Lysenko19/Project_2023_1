@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# echo "So the parameters are $*"
+# echo "You have $# parameters"
+
+for parameters in $*; do
+    if [ -f $parameters ]
+    then
+        echo "Those $parameters are files"
+    else
+        echo "Those $parameters are not files"
+    fi
+    echo $parameters
+done
+
+timer="sleep 1"
+$timer
+echo "Now lets do some other loop "
+for i in {1..3}; do
+    echo -n "."
+    $timer
+done
+printf "\n"
+echo "It's called While Loop and it will be executed 
+until the given condition doesn't reached"
+$timer
+echo "for example"
+
+function value_sum {
+sum=0
+while true; do
+    read -p "enter your value, if you wanna stop input "quit" " value_1
+    if [ "$value_1" == "quit" ]; then
+    break
+    fi
+    sum=$(($sum+$value_1))
+    echo "total value: $sum"
+done
+}
+
+value_sum
+
+echo "Now with a function feature! Great!"
+$timer
+echo "Let's do some extra stuff"
+
+function make_directory() {
+    directory_name=$1
+    mkdir $directory_name
+    echo "Desired $directory_name will be created"
+
+if [ -d $directory_name ]; then
+    echo "Directory exists, Ill make a copy and rename it"
+    new_directory="${directory_name}_copy"
+    copy_number=2
+        while [ -e "${new_directory}${copy_number}" ]; do
+            ((copy_number++))
+        done
+        cp -r "$directory_name" "${new_directory}${copy_number}"
+        echo "Successfully created a copy ${new_directory}${copy_number} of this directory"
+else
+    echo "Directory created"
+fi
+}
+
+make_directory testdirectory

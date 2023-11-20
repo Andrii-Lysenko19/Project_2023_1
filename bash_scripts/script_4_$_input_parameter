@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "this is another variation of input parameters counting using \$* and \$#"
+
+echo "all of the parameters are $* and $#"
+sleep 1
+echo "thats all!"
